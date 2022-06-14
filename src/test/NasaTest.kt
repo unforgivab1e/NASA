@@ -1,23 +1,31 @@
 package test
 
+
+import exception.FormException
 import main.NMoon
-import org.testng.annotations.Test
+import org.junit.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFails
+import kotlin.test.assertFailsWith
+
 
 class NasaTest {
     val nMoon = NMoon()
 
     @Test
-    fun xxx(){
+    fun theFirstRowGetsTwoPiecesOfData(){
         val consolInput = "1 2"
         val splitConsole = nMoon.func(consolInput)
-        assertEquals(splitConsole.size, 2)
+        if (splitConsole != null) {
+            assertEquals(splitConsole.size, 2)
+        }
     }
 
-   // @Test
-   /* fun xx1(){
+   @Test
+    fun testsWhetherTwoPiecesOfDataAreNumbers(){
         val consolInput = "1 a"
-        val splitConsole = nMoon.fun2(consolInput)
-        asse
-    }*/
+        assertFailsWith<FormException> { nMoon.stringToInt(consolInput) }
+
+
+    }
 }
